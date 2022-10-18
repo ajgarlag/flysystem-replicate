@@ -33,4 +33,4 @@ jobs:
           php-version: ${{ matrix.php }}
           tools: composer:v2
       - run: composer update --no-progress ${{ matrix.composer-flags }}
-      - run: COMPOSER_OPTS='${{ matrix.composer-flags }}' bin/phpunit ${{ matrix.phpunit-flags }}
+      - run: COMPOSER_OPTS='${{ matrix.composer-flags }}' vendor/bin/phpunit ${{ matrix.phpunit-flags }}

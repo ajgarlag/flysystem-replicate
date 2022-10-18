@@ -1,15 +1,16 @@
 <?php
 
 use League\Flysystem\Config;
-use League\Flysystem\Replicate\ReplicateAdapter;
+use Ajgl\Flysystem\Replicate\ReplicateAdapter;
+use Mockery\Adapter\Phpunit\MockeryTestCase;
 
-class LeagueReplicateAdapterTests extends \PHPUnit_Framework_TestCase
+class LeagueAdapterTests extends MockeryTestCase
 {
     protected $adapter;
     protected $source;
     protected $replica;
 
-    public function setup()
+    protected function setUp(): void
     {
         $this->source = Mockery::mock('League\\Flysystem\\AdapterInterface');
         $this->replica = Mockery::mock('League\\Flysystem\\AdapterInterface');

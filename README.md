@@ -43,4 +43,9 @@ Edit your `composer.json` file and change your requirement:
  }
 ```
 
+Once your `composer.json` file is modified, run the following command:
+```sh
+composer update ajgl/flysystem-replicate
+```
+
 `League\Flysystem\Replicate\ReplicateAdapter` class is deprecated. Is recommended to change any reference to `Ajgl\Flysystem\Replicate\ReplicateAdapter`.

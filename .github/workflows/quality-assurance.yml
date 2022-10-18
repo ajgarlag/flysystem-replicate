@@ -22,10 +22,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [ '7.4' ]
+        php: [ '7.4', '8.0', '8.1' ]
         composer-flags: [ '' ]
         experimental: [false]
         phpunit-flags: [ '--coverage-text' ]
+        include:
+          - php: '7.4'
+            composer-flags: '--prefer-lowest'
+            experimental: false
+            phpunit-flags: '--no-coverage'
+          - php: '8.2'
+            composer-flags: '--ignore-platform-reqs'
+            experimental: true
+            phpunit-flags: '--no-coverage'
     steps:
       - uses: actions/checkout@v2
       - uses: shivammathur/setup-php@v2

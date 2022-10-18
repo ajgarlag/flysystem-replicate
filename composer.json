@@ -1,6 +1,6 @@
 {
     "name": "ajgl/flysystem-replicate",
-    "description": "Flysystem adapter for Replica's",
+    "description": "Flysystem Adapter for Replication",
     "license": "MIT",
     "authors": [
         {

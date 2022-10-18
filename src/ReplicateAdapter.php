@@ -1,6 +1,6 @@
 <?php
 
-namespace League\Flysystem\Replicate;
+namespace Ajgl\Flysystem\Replicate;
 
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\Config;

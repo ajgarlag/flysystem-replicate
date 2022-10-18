@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.2 - 2022-10-18
+
+### Added
+
+* Add `Ajgl\Flysystem\Replicate\ReplicateAdapter` class.
+
+### Changed
+
+* Move ReplicateAdapter to new namespace.
+
+### Deprected
+
+* Deprecate `League\Flysystem\Replicate\ReplicateAdapter` class
+
 ## 1.0.1 - 2015-08-18
 
 ### Fixed

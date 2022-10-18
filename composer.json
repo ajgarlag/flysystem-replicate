@@ -1,11 +1,11 @@
 {
-    "name": "league/flysystem-replicate-adapter",
+    "name": "ajgl/flysystem-replicate",
     "description": "Flysystem adapter for Replica's",
     "license": "MIT",
     "authors": [
         {
-            "name": "Frank de Jonge",
-            "email": "info@frenky.net"
+            "name": "Antonio J. García Lagar",
+            "email": "aj@garcialagar.es"
         }
     ],
     "require": {
@@ -18,8 +18,12 @@
     },
     "autoload": {
         "psr-4": {
-            "League\\Flysystem\\Replicate\\": "src/"
+            "Ajgl\\Flysystem\\Replicate\\": "src/",
+            "League\\Flysystem\\Replicate\\": "lib/"
         }
+    },
+    "replace": {
+        "league/flysystem-replicate-adapter": ">=1.0.2"
     },
     "config": {
         "bin-dir": "bin"

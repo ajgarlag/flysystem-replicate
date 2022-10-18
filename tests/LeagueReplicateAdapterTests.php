@@ -1,9 +1,9 @@
 <?php
 
 use League\Flysystem\Config;
-use Ajgl\Flysystem\Replicate\ReplicateAdapter;
+use League\Flysystem\Replicate\ReplicateAdapter;
 
-class ReplicateAdapterTests extends \PHPUnit_Framework_TestCase
+class LeagueReplicateAdapterTests extends \PHPUnit_Framework_TestCase
 {
     protected $adapter;
     protected $source;

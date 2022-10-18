@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+* Add support for PHP > 7.4
+
 ## 1.0.3 - 2022-10-18
 
 ### Removed

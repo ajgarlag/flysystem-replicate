@@ -6,13 +6,13 @@ on:
       - src/**/*.php
       - .github/workflows/quality-assurance.yml
     branches:
-      - 1.x
+      - 2.x
   pull_request:
     paths:
       - src/**/*.php
       - .github/workflows/quality-assurance.yml
     branches:
-      - 1.x
+      - 2.x
 
 jobs:
   phpunit:

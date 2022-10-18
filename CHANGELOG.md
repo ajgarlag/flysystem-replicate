@@ -1,33 +1,14 @@
 # Changelog
 
-## 1.0.4 - 2022-10-18
+## Unreleased
 
 ### Added
 
-* Add support for PHP > 7.4
-
-## 1.0.3 - 2022-10-18
+* Add `Ajgl\Flysystem\Replicate\ReplicateFilesystemAdapter` class.
 
 ### Removed
 
-* Drop support for PHP < 7.4
+* Remove `Ajgl\Flysystem\Replicate\ReplicateAdapter` class.
+* Remove `League\Flysystem\Replicate\ReplicateAdapter` class.
 
-## 1.0.2 - 2022-10-18
-
-### Added
-
-* Add `Ajgl\Flysystem\Replicate\ReplicateAdapter` class.
-
-### Changed
-
-* Move ReplicateAdapter to new namespace.
-
-### Deprecated
-
-* Deprecate `League\Flysystem\Replicate\ReplicateAdapter` class
-
-## 1.0.1 - 2015-08-18
-
-### Fixed
-
-* [ReplicateAdapter] Now rewinds streams appropriately during writeStream and updateStream.
+> For 1.x see [CHANGELOG](https://github.com/ajgarlag/flysystem-replicate/blob/1.x/CHANGELOG.md)

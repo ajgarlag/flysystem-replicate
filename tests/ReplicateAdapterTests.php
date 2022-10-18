@@ -122,6 +122,9 @@ class ReplicateAdapterTests extends \PHPUnit_Framework_TestCase
 
     public function testMethodUpdateStreamSourceWillWriteAndEnsureSeekableWillFail()
     {
+        if (PHP_VERSION_ID >= 70400) {
+            $this->markTestIncomplete('Not supported in PHP >= 7.4');
+        }
         stream_wrapper_register('test', 'NonSeekableStream');
 
         $this->source->shouldReceive('updateStream')->once()->andReturn(true);
@@ -149,6 +152,9 @@ class ReplicateAdapterTests extends \PHPUnit_Framework_TestCase
 
     public function testMethodWriteStreamSourceWillWriteAndEnsureSeekableWillFail()
     {
+        if (PHP_VERSION_ID >= 70400) {
+            $this->markTestIncomplete('Not supported in PHP >= 7.4');
+        }
         stream_wrapper_register('test', 'NonSeekableStream');
 
         $this->source->shouldReceive('writeStream')->once()->andReturn(true);

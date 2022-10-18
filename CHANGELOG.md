@@ -10,7 +10,7 @@
 
 * Move ReplicateAdapter to new namespace.
 
-### Deprected
+### Deprecated
 
 * Deprecate `League\Flysystem\Replicate\ReplicateAdapter` class
 

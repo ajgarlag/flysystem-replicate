@@ -11,12 +11,12 @@
     ],
     "require": {
         "php": "^7.4 || ^8.0",
-        "league/flysystem": "^2.0"
+        "league/flysystem": "^2.0 || ^3.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.12",
-        "league/flysystem-adapter-test-utilities": "^2.4",
-        "league/flysystem-memory": "^2.0",
+        "league/flysystem-adapter-test-utilities": "^2.4 || ^3.7",
+        "league/flysystem-memory": "^2.0 || ^3.0",
         "phpunit/phpunit": "^9.5.5",
         "phpstan/phpstan": "^1.8"
     },

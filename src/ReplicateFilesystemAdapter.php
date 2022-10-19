@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ajgl\Flysystem\Replicate;
 
+use BadMethodCallException;
 use League\Flysystem\Config;
 use League\Flysystem\FileAttributes;
 use League\Flysystem\FilesystemAdapter;
@@ -39,6 +40,15 @@ final class ReplicateFilesystemAdapter implements FilesystemAdapter
     public function fileExists(string $path): bool
     {
         return $this->source->fileExists($path);
+    }
+
+    public function directoryExists(string $path): bool
+    {
+        if (!method_exists($this->source, 'directoryExists')) {
+            throw new BadMethodCallException('Require "league/flysystem:^3" to use this method.');
+        }
+
+        return $this->source->directoryExists($path);
     }
 
     public function write(string $path, string $contents, Config $config): void

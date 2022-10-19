@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Add method `ReplicateFilesystemAdapter::directoryExists` to provide compatibility with `league/flysystem:^3`
+
 ## 2.0.0 - 2022-10-19
 
 ### Added

@@ -1,5 +1,7 @@
 <?php
 
+namespace Ajgl\Flysystem\Replicate\Tests;
+
 use League\Flysystem\Config;
 use Ajgl\Flysystem\Replicate\ReplicateAdapter;
 use Mockery\Adapter\Phpunit\MockeryTestCase;
@@ -12,8 +14,8 @@ class ReplicateAdapterTests extends MockeryTestCase
 
     protected function setUp(): void
     {
-        $this->source = Mockery::mock('League\\Flysystem\\AdapterInterface');
-        $this->replica = Mockery::mock('League\\Flysystem\\AdapterInterface');
+        $this->source = \Mockery::mock('League\\Flysystem\\AdapterInterface');
+        $this->replica = \Mockery::mock('League\\Flysystem\\AdapterInterface');
         $this->adapter = new ReplicateAdapter($this->source, $this->replica);
     }
 
@@ -123,13 +125,10 @@ class ReplicateAdapterTests extends MockeryTestCase
 
     public function testMethodUpdateStreamSourceWillWriteAndEnsureSeekableWillFail()
     {
-        if (PHP_VERSION_ID >= 70400) {
-            $this->markTestIncomplete('Not supported in PHP >= 7.4');
-        }
-        stream_wrapper_register('test', 'NonSeekableStream');
+        stream_wrapper_register('test', NonSeekableStream::class);
 
         $this->source->shouldReceive('updateStream')->once()->andReturn(true);
-        $this->source->shouldReceive('readStream')->once()->andReturn(fopen('data:text/plain,value', 'r+'));
+        $this->source->shouldReceive('readStream')->once()->andReturn(false);
 
         $this->assertFalse($this->adapter->updateStream('value', fopen('test://value', 'r+'), new Config()));
 
@@ -153,13 +152,10 @@ class ReplicateAdapterTests extends MockeryTestCase
 
     public function testMethodWriteStreamSourceWillWriteAndEnsureSeekableWillFail()
     {
-        if (PHP_VERSION_ID >= 70400) {
-            $this->markTestIncomplete('Not supported in PHP >= 7.4');
-        }
-        stream_wrapper_register('test', 'NonSeekableStream');
+        stream_wrapper_register('test', NonSeekableStream::class);
 
         $this->source->shouldReceive('writeStream')->once()->andReturn(true);
-        $this->source->shouldReceive('readStream')->once()->andReturn(fopen('data:text/plain,value', 'r+'));
+        $this->source->shouldReceive('readStream')->once()->andReturn(false);
 
         $this->assertFalse($this->adapter->writeStream('value', fopen('test://value', 'r+'), new Config()));
 

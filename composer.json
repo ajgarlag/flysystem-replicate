@@ -24,6 +24,11 @@
             "League\\Flysystem\\Replicate\\": "lib/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Ajgl\\Flysystem\\Replicate\\Tests\\": "tests/"
+        }
+    },
     "replace": {
         "league/flysystem-replicate-adapter": ">=1.0.2"
     },

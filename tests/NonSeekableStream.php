@@ -1,5 +1,7 @@
 <?php
 
+namespace Ajgl\Flysystem\Replicate\Tests;
+
 class NonSeekableStream
 {
     public function stream_open($uri, $mode, $options, &$opened_path)

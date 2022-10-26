@@ -27,3 +27,36 @@ $adapter = new Ajgl\Flysystem\Replicate\ReplicateFilesystemAdapter($source, $rep
 $anotherReplica = new League\Flysystem\WebDAV\WebDAVAdapter(...);
 $adapter = new Ajgl\Flysystem\Replicate\ReplicateFilesystemAdapter($adapter, $anotherReplica);
 ```
+
+### Symfony usage with `league/flysystem-bundle`
+
+If you have [`league/flysystem-bundle`](https://packagist.org/packages/league/flysystem-bundle) installed in your Symfony application,
+you have to define the replicate adapter service referencing your source and replica storages.
+
+```yaml
+# config/services.yaml
+services:
+    app.replicate.storage:
+        class: Ajgl\Flysystem\Replicate\ReplicateFilesystemAdapter
+        arguments: ['@flysystem.adapter.source.storage', '@flysystem.adapter.replica.storage']
+
+```
+
+Then, you have to define a custom adapter in the `league/flysystem-bundle` configuration.
+
+```yaml
+# config/packages/flysystem.yaml
+flysystem:
+    storages:
+        source.storage:
+            adapter: 'local'
+            options:
+                directory: '%kernel.project_dir%/var/storage'
+        replica.storage:
+            adapter: 'aws'
+            options:
+                client: 'aws.client'
+                bucket: 'storage'
+        replicate.storage:
+            adapter: 'app.replicate.storage'
+```

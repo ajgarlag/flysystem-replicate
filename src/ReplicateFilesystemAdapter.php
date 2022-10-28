@@ -11,15 +11,9 @@ use League\Flysystem\FilesystemAdapter;
 
 final class ReplicateFilesystemAdapter implements FilesystemAdapter
 {
-    /**
-     * @var FilesystemAdapter
-     */
-    protected $replica;
+    private FilesystemAdapter $replica;
 
-    /**
-     * @var FilesystemAdapter
-     */
-    protected $source;
+    private FilesystemAdapter $source;
 
     public function __construct(FilesystemAdapter $source, FilesystemAdapter $replica)
     {
@@ -68,11 +62,10 @@ final class ReplicateFilesystemAdapter implements FilesystemAdapter
      * Rewinds the stream, or returns the source stream if not seekable.
      *
      * @param resource $resource The resource to rewind.
-     * @param string   $path     The path where the resource exists.
      *
      * @return resource A stream set to position zero.
      */
-    protected function ensureSeekable($resource, $path)
+    private function ensureSeekable($resource, string $path)
     {
         if (stream_get_meta_data($resource)['seekable'] && rewind($resource)) {
             return $resource;

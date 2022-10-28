@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Move implementation to internal trait `Ajgl\Flysystem\Replicate\ReplicateFilesystemAdapterTrait`
+
 ## 2.1.0 - 2022-10-20
 
 ### Added

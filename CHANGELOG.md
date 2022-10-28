@@ -5,6 +5,7 @@
 ### Added
 
 - Support public URL generation
+- Support checksum providing
 
 ### Changed
 

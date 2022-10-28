@@ -5,10 +5,12 @@ declare(strict_types=1);
 namespace Ajgl\Flysystem\Replicate;
 
 use BadMethodCallException;
+use League\Flysystem\ChecksumProvider;
 use League\Flysystem\Config;
 use League\Flysystem\FileAttributes;
 use League\Flysystem\FilesystemAdapter;
 use League\Flysystem\UnableToGeneratePublicUrl;
+use League\Flysystem\UnableToProvideChecksum;
 use League\Flysystem\UrlGeneration\PublicUrlGenerator;
 
 /**
@@ -164,5 +166,18 @@ trait ReplicateFilesystemAdapterTrait
         }
 
         return $this->source->publicUrl($path, $config);
+    }
+
+    public function checksum(string $path, Config $config): string
+    {
+        if (!interface_exists(ChecksumProvider::class)) {
+            throw new BadMethodCallException('Require "league/flysystem:^3" to use this method.');
+        }
+
+        if (!$this->source instanceof ChecksumProvider) {
+            throw new UnableToProvideChecksum(sprintf('Source adapter must implements "%s" to use this method.', ChecksumProvider::class), $path);
+        }
+
+        return $this->source->checksum($path, $config);
     }
 }

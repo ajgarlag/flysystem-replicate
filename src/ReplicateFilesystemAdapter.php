@@ -14,12 +14,12 @@ final class ReplicateFilesystemAdapter implements FilesystemAdapter
     /**
      * @var FilesystemAdapter
      */
-    protected $replica;
+    private $replica;
 
     /**
      * @var FilesystemAdapter
      */
-    protected $source;
+    private $source;
 
     public function __construct(FilesystemAdapter $source, FilesystemAdapter $replica)
     {
@@ -72,7 +72,7 @@ final class ReplicateFilesystemAdapter implements FilesystemAdapter
      *
      * @return resource A stream set to position zero.
      */
-    protected function ensureSeekable($resource, $path)
+    private function ensureSeekable($resource, $path)
     {
         if (stream_get_meta_data($resource)['seekable'] && rewind($resource)) {
             return $resource;

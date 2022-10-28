@@ -181,6 +181,18 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
     /**
      * @test
      */
+    public function generating_a_temporary_url(): void
+    {
+        if (!is_callable('parent::generating_a_temporary_url')) {
+            $this->markTestSkipped();
+        }
+        static::$adapter = new ReplicateFilesystemAdapter(new TemporaryUrlGeneratorAdapter(), static::$replica);
+        parent::generating_a_temporary_url();
+    }
+
+    /**
+     * @test
+     */
     public function get_checksum(): void
     {
         if (!is_callable('parent::get_checksum')) {

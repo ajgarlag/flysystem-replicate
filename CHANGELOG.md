@@ -6,6 +6,7 @@
 
 - Support public URL generation
 - Support checksum providing
+- Support temporary URL generation
 
 ### Changed
 

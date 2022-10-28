@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace Ajgl\Flysystem\Replicate;
 
 use BadMethodCallException;
+use DateTimeInterface;
 use League\Flysystem\ChecksumProvider;
 use League\Flysystem\Config;
 use League\Flysystem\FileAttributes;
 use League\Flysystem\FilesystemAdapter;
 use League\Flysystem\UnableToGeneratePublicUrl;
+use League\Flysystem\UnableToGenerateTemporaryUrl;
 use League\Flysystem\UnableToProvideChecksum;
 use League\Flysystem\UrlGeneration\PublicUrlGenerator;
+use League\Flysystem\UrlGeneration\TemporaryUrlGenerator;
 
 /**
  * @internal
@@ -166,6 +169,19 @@ trait ReplicateFilesystemAdapterTrait
         }
 
         return $this->source->publicUrl($path, $config);
+    }
+
+    public function temporaryUrl(string $path, DateTimeInterface $expiresAt, Config $config): string
+    {
+        if (!interface_exists(TemporaryUrlGenerator::class)) {
+            throw new BadMethodCallException('Require "league/flysystem:^3" to use this method.');
+        }
+
+        if (!$this->source instanceof TemporaryUrlGenerator) {
+            throw new UnableToGenerateTemporaryUrl(sprintf('Source adapter must implements "%s" to use this method.', TemporaryUrlGenerator::class), $path);
+        }
+
+        return $this->source->temporaryUrl($path, $expiresAt, $config);
     }
 
     public function checksum(string $path, Config $config): string

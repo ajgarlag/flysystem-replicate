@@ -11,6 +11,7 @@ use League\Flysystem\DirectoryAttributes;
 use League\Flysystem\FileAttributes;
 use League\Flysystem\FilesystemAdapter;
 use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
+use League\Flysystem\UrlGeneration\PublicUrlGenerator;
 use League\Flysystem\Visibility;
 use LogicException;
 
@@ -162,5 +163,17 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
         $this->adapter()->writeStream('path', $content, new Config());
 
         stream_wrapper_unregister('test');
+    }
+
+    /**
+     * @test
+     */
+    public function generating_a_public_url(): void
+    {
+        if (!is_callable('parent::generating_a_public_url')) {
+            $this->markTestSkipped();
+        }
+        static::$adapter = new ReplicateFilesystemAdapter(new PublicUrlGeneratorAdapter(), static::$replica);
+        parent::generating_a_public_url();
     }
 }

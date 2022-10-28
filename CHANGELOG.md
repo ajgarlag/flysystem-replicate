@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Added
+
+- Support public URL generation
+
 ### Changed
 
 - Move implementation to internal trait `Ajgl\Flysystem\Replicate\ReplicateFilesystemAdapterTrait`

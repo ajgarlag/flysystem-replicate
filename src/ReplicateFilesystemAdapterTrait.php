@@ -8,6 +8,8 @@ use BadMethodCallException;
 use League\Flysystem\Config;
 use League\Flysystem\FileAttributes;
 use League\Flysystem\FilesystemAdapter;
+use League\Flysystem\UnableToGeneratePublicUrl;
+use League\Flysystem\UrlGeneration\PublicUrlGenerator;
 
 /**
  * @internal
@@ -149,5 +151,18 @@ trait ReplicateFilesystemAdapterTrait
     {
         $this->source->copy($source, $destination, $config);
         $this->replica->copy($source, $destination, $config);
+    }
+
+    public function publicUrl(string $path, Config $config): string
+    {
+        if (!interface_exists(PublicUrlGenerator::class)) {
+            throw new BadMethodCallException('Require "league/flysystem:^3" to use this method.');
+        }
+
+        if (!$this->source instanceof PublicUrlGenerator) {
+            throw new UnableToGeneratePublicUrl(sprintf('Source adapter must implements "%s" to use this method.', PublicUrlGenerator::class), $path);
+        }
+
+        return $this->source->publicUrl($path, $config);
     }
 }

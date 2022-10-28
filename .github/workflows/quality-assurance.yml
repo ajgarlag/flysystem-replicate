@@ -44,7 +44,7 @@ jobs:
       - run: composer update --no-progress ${{ matrix.composer-flags }}
       - run: COMPOSER_OPTS='${{ matrix.composer-flags }}' vendor/bin/phpunit ${{ matrix.phpunit-flags }}
       - run: vendor/bin/phpstan analyse
-        if: ${{ matrix.php == '7.4' }}
+        if: ${{ matrix.php == '8.1' }}
       - run: vendor/bin/php-cs-fixer fix --diff --dry-run
         continue-on-error: true
-        if: ${{ matrix.php == '7.4' }}
+        if: ${{ matrix.php == '8.1' }}

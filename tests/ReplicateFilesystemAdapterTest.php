@@ -6,11 +6,13 @@ namespace Ajgl\Flysystem\Replicate\Tests;
 
 use Ajgl\Flysystem\Replicate\ReplicateFilesystemAdapter;
 use League\Flysystem\AdapterTestUtilities\FilesystemAdapterTestCase;
+use League\Flysystem\ChecksumProvider;
 use League\Flysystem\Config;
 use League\Flysystem\DirectoryAttributes;
 use League\Flysystem\FileAttributes;
 use League\Flysystem\FilesystemAdapter;
 use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
+use League\Flysystem\UrlGeneration\PublicUrlGenerator;
 use League\Flysystem\Visibility;
 use LogicException;
 
@@ -162,5 +164,65 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
         $this->adapter()->writeStream('path', $content, new Config());
 
         stream_wrapper_unregister('test');
+    }
+
+    /**
+     * @test
+     */
+    public function generating_a_public_url(): void
+    {
+        if (!is_callable('parent::generating_a_public_url')) {
+            $this->markTestSkipped();
+        }
+        static::$adapter = new ReplicateFilesystemAdapter(new PublicUrlGeneratorAdapter(), static::$replica);
+        parent::generating_a_public_url();
+    }
+
+    /**
+     * @test
+     */
+    public function generating_a_temporary_url(): void
+    {
+        if (!is_callable('parent::generating_a_temporary_url')) {
+            $this->markTestSkipped();
+        }
+        static::$adapter = new ReplicateFilesystemAdapter(new TemporaryUrlGeneratorAdapter(), static::$replica);
+        parent::generating_a_temporary_url();
+    }
+
+    /**
+     * @test
+     */
+    public function get_checksum(): void
+    {
+        if (!is_callable('parent::get_checksum')) {
+            $this->markTestSkipped();
+        }
+        static::$adapter = new ReplicateFilesystemAdapter(new ChecksumProviderAdapter(), static::$replica);
+        parent::get_checksum();
+    }
+
+    /**
+     * @test
+     */
+    public function cannot_get_checksum_for_non_existent_file(): void
+    {
+        if (!is_callable('parent::cannot_get_checksum_for_non_existent_file')) {
+            $this->markTestSkipped();
+        }
+        static::$adapter = new ReplicateFilesystemAdapter(new ChecksumProviderAdapter(), static::$replica);
+        parent::cannot_get_checksum_for_non_existent_file();
+    }
+
+    /**
+     * @test
+     */
+    public function cannot_get_checksum_for_directory(): void
+    {
+        if (!is_callable('parent::cannot_get_checksum_for_directory')) {
+            $this->markTestSkipped();
+        }
+        static::$adapter = new ReplicateFilesystemAdapter(new ChecksumProviderAdapter(), static::$replica);
+        parent::cannot_get_checksum_for_directory();
     }
 }

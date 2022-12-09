@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.2.0 - 2022-10-28
+
 ### Added
 
 - Support public URL generation

@@ -44,7 +44,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
     {
         $adapter = parent::adapter();
 
-        if (! $adapter instanceof ReplicateFilesystemAdapter) {
+        if (!$adapter instanceof ReplicateFilesystemAdapter) {
             throw new LogicException();
         }
 

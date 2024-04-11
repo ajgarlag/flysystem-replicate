@@ -54,7 +54,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
     /**
      * @return array<array{0: string, 1: array<mixed>, 2: bool, 3?: mixed}>
      */
-    public function callProvider()
+    public static function callProvider()
     {
         return [
             ['fileExists', ['path'], false, true],

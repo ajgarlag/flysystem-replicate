@@ -17,7 +17,7 @@
         "friendsofphp/php-cs-fixer": "^3.12",
         "league/flysystem-adapter-test-utilities": "^2.4 || ^3.7",
         "league/flysystem-memory": "^2.0 || ^3.0",
-        "phpunit/phpunit": "^9.5.5",
+        "phpunit/phpunit": "^9.6 || ^10.5 || ^11.1",
         "phpstan/phpstan": "^1.8"
     },
     "autoload": {

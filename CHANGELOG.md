@@ -8,6 +8,7 @@
 
 ### Removed
 
+- Remove support for `php:8.0`
 - Remove support for `php:^7.4`
 - Remove support for `league/flysystem:^2`
 

@@ -48,10 +48,6 @@ trait ReplicateFilesystemAdapterTrait
 
     public function directoryExists(string $path): bool
     {
-        if (!method_exists($this->source, 'directoryExists')) {
-            throw new BadMethodCallException('Require "league/flysystem:^3" to use this method.');
-        }
-
         return $this->source->directoryExists($path);
     }
 
@@ -161,7 +157,7 @@ trait ReplicateFilesystemAdapterTrait
     public function publicUrl(string $path, Config $config): string
     {
         if (!interface_exists(PublicUrlGenerator::class)) {
-            throw new BadMethodCallException('Require "league/flysystem:^3" to use this method.');
+            throw new BadMethodCallException('Require "league/flysystem:^3.6" to use this method.');
         }
 
         if (!$this->source instanceof PublicUrlGenerator) {
@@ -174,7 +170,7 @@ trait ReplicateFilesystemAdapterTrait
     public function temporaryUrl(string $path, DateTimeInterface $expiresAt, Config $config): string
     {
         if (!interface_exists(TemporaryUrlGenerator::class)) {
-            throw new BadMethodCallException('Require "league/flysystem:^3" to use this method.');
+            throw new BadMethodCallException('Require "league/flysystem:^3.10" to use this method.');
         }
 
         if (!$this->source instanceof TemporaryUrlGenerator) {
@@ -187,7 +183,7 @@ trait ReplicateFilesystemAdapterTrait
     public function checksum(string $path, Config $config): string
     {
         if (!interface_exists(ChecksumProvider::class)) {
-            throw new BadMethodCallException('Require "league/flysystem:^3" to use this method.');
+            throw new BadMethodCallException('Require "league/flysystem:^3.7" to use this method.');
         }
 
         if (!$this->source instanceof ChecksumProvider) {

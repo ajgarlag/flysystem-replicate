@@ -13,6 +13,7 @@ use League\Flysystem\FileAttributes;
 use League\Flysystem\FilesystemAdapter;
 use League\Flysystem\InMemory\InMemoryFilesystemAdapter;
 use League\Flysystem\UrlGeneration\PublicUrlGenerator;
+use League\Flysystem\UrlGeneration\TemporaryUrlGenerator;
 use League\Flysystem\Visibility;
 use LogicException;
 
@@ -171,7 +172,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
      */
     public function generating_a_public_url(): void
     {
-        if (!is_callable('parent::generating_a_public_url')) {
+        if (!interface_exists(PublicUrlGenerator::class)) {
             $this->markTestSkipped();
         }
         static::$adapter = new ReplicateFilesystemAdapter(new PublicUrlGeneratorAdapter(), static::$replica);
@@ -183,7 +184,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
      */
     public function generating_a_temporary_url(): void
     {
-        if (!is_callable('parent::generating_a_temporary_url')) {
+        if (!interface_exists(TemporaryUrlGenerator::class)) {
             $this->markTestSkipped();
         }
         static::$adapter = new ReplicateFilesystemAdapter(new TemporaryUrlGeneratorAdapter(), static::$replica);
@@ -195,7 +196,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
      */
     public function get_checksum(): void
     {
-        if (!is_callable('parent::get_checksum')) {
+        if (!interface_exists(ChecksumProvider::class)) {
             $this->markTestSkipped();
         }
         static::$adapter = new ReplicateFilesystemAdapter(new ChecksumProviderAdapter(), static::$replica);
@@ -207,7 +208,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
      */
     public function cannot_get_checksum_for_non_existent_file(): void
     {
-        if (!is_callable('parent::cannot_get_checksum_for_non_existent_file')) {
+        if (!interface_exists(ChecksumProvider::class)) {
             $this->markTestSkipped();
         }
         static::$adapter = new ReplicateFilesystemAdapter(new ChecksumProviderAdapter(), static::$replica);
@@ -219,7 +220,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
      */
     public function cannot_get_checksum_for_directory(): void
     {
-        if (!is_callable('parent::cannot_get_checksum_for_directory')) {
+        if (!interface_exists(ChecksumProvider::class)) {
             $this->markTestSkipped();
         }
         static::$adapter = new ReplicateFilesystemAdapter(new ChecksumProviderAdapter(), static::$replica);

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Removed
+
+- Remove support for `league/flysystem:^2`
+
 ## 2.2.0 - 2022-10-28
 
 ### Added

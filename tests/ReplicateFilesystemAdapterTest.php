@@ -16,6 +16,8 @@ use League\Flysystem\UrlGeneration\PublicUrlGenerator;
 use League\Flysystem\UrlGeneration\TemporaryUrlGenerator;
 use League\Flysystem\Visibility;
 use LogicException;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 
 final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
 {
@@ -55,7 +57,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
     /**
      * @return array<array{0: string, 1: array<mixed>, 2: bool, 3?: mixed}>
      */
-    public function callProvider()
+    public static function callProvider()
     {
         return [
             ['fileExists', ['path'], false, true],
@@ -78,12 +80,11 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
     }
 
     /**
-     * @dataProvider callProvider
-     * @test
-     *
      * @param array<mixed> $arguments
      * @param mixed $return
      */
+    #[DataProvider('callProvider')]
+    #[Test]
     public function method_delegation(string $method, array $arguments, bool $useReplica, $return = null): void
     {
         $source = $this->createMock(FilesystemAdapter::class);
@@ -108,25 +109,19 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
         $this->assertSame($return, \call_user_func_array([$this->adapter(), $method], $arguments));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getting_source_adapter(): void
     {
         $this->assertSame(static::$source, $this->adapter()->getSourceAdapter());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getting_replica_adapter(): void
     {
         $this->assertSame(static::$replica, $this->adapter()->getReplicaAdapter());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleting_file_from_replica(): void
     {
         $source = new InMemoryFilesystemAdapter();
@@ -144,9 +139,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
         $this->adapter()->delete('path');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function writing_non_seekable_stream(): void
     {
         stream_wrapper_register('test', NonSeekableStream::class);
@@ -167,9 +160,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
         stream_wrapper_unregister('test');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function generating_a_public_url(): void
     {
         if (!interface_exists(PublicUrlGenerator::class)) {
@@ -179,9 +170,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
         parent::generating_a_public_url();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function generating_a_temporary_url(): void
     {
         if (!interface_exists(TemporaryUrlGenerator::class)) {
@@ -191,9 +180,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
         parent::generating_a_temporary_url();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function get_checksum(): void
     {
         if (!interface_exists(ChecksumProvider::class)) {
@@ -203,9 +190,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
         parent::get_checksum();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cannot_get_checksum_for_non_existent_file(): void
     {
         if (!interface_exists(ChecksumProvider::class)) {
@@ -215,9 +200,7 @@ final class ReplicateFilesystemAdapterTest extends FilesystemAdapterTestCase
         parent::cannot_get_checksum_for_non_existent_file();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cannot_get_checksum_for_directory(): void
     {
         if (!interface_exists(ChecksumProvider::class)) {

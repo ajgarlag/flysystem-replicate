@@ -6,6 +6,8 @@ namespace Ajgl\Flysystem\Replicate\Tests;
 
 class NonSeekableStream
 {
+    public mixed $context;
+
     public function stream_open(string $path, string $mode, int $options, ?string &$opened_path): bool
     {
         return true;

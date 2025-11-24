@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+### Added
+
+- Add support for PHP up to `8.5`
+
+### Removed
+
+- Remove support for `php:8.0`
+- Remove support for `php:^7.4`
+- Remove support for `league/flysystem:^2`
+
 ## 2.2.0 - 2022-10-28
 
 ### Added

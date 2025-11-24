@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.3.0 - 2025-11-24
+
 ### Added
 
 - Add support for PHP up to `8.5`

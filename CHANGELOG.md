@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Added
+
+- Add support for PHP up to `8.5`
+
 ### Removed
 
 - Remove support for `php:^7.4`
